@@ -23,6 +23,8 @@ show tables;
 
 # Nginx 
 
+mkdir ~/mount
+
 docker build -t docker-nginx  --no-cache .
 
 docker run -d -v ~/mount:/var/log/nginx  -p 80:80 docker-nginx
