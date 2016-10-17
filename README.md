@@ -31,4 +31,4 @@ docker run -d -v ~/mount:/var/log/nginx  -p 80:80 docker-nginx
 
 browser localhost
 
-check ~/monut with the log files
+ls ~/mount (check ~/monut with the log files)
