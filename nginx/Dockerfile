@@ -4,17 +4,10 @@ FROM ubuntu
 # File Author / Maintainer
 MAINTAINER Zhiying
 
-# Install Nginx
-
-# Update the repository
-RUN apt-get update
-
-# Install necessary tools
-RUN apt-get install -y nano wget dialog net-tools
-
-# Download and Install Nginx
-RUN apt-get install -y nginx  
-
+RUN apt-get update &&  \
+    apt-get install -y \ 
+	vim \
+        nginx  
 
 # Append "daemon off;" to the configuration file
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
