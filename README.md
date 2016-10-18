@@ -25,6 +25,8 @@ show tables;
 
 mkdir ~/mount
 
+cd nginx
+
 docker build -t docker-nginx  --no-cache .
 
 docker run -d -v ~/mount:/var/log/nginx  -p 80:80 docker-nginx
@@ -32,3 +34,14 @@ docker run -d -v ~/mount:/var/log/nginx  -p 80:80 docker-nginx
 browser localhost
 
 ls ~/mount   #check ~/monut with the log files
+
+
+# Tomee
+
+cd tomee
+
+docker build -t docker-tomee  --no-cache .
+
+docker run -d -p 8080:8080  docker-tomee
+
+browser localhost:8080
