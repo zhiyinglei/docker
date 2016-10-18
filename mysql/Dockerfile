@@ -1,9 +1,13 @@
 FROM ubuntu:14.04
-MAINTAINER Zhiying 
-RUN DEBIAN_FRONTEND=noninteractive apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install mysql-server
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install wget
+MAINTAINER Zhiying 
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y \
+	mysql-server \
+	wget
+
 RUN wget "https://raw.githubusercontent.com/tascape/reactor/master/src/main/resources/db/reactor.sql" -O reactor.sql
 
 RUN /etc/init.d/mysql start \

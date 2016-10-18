@@ -5,16 +5,16 @@ MAINTAINER Zhiying
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update \ 
+	&& apt-get install -y \
 			python-software-properties \
 			software-properties-common \
+			curl \
 			vim \
-			curl 
-
-RUN add-apt-repository ppa:webupd8team/java  
-RUN echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections  
-RUN echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections 
-RUN apt-get update && apt-get install -y \ 
+ 	&& add-apt-repository ppa:webupd8team/java \   
+	&& echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections \  
+	&& echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections \
+	&& apt-get update && apt-get install -y \ 
 		oracle-java8-installer \ 
 		oracle-java8-set-default
 
@@ -23,7 +23,6 @@ RUN mkdir -p /usr/local/tomee
 
 WORKDIR /usr/local/tomee
 
-# curl -fsSL 'https://www.apache.org/dist/tomee/KEYS' | awk -F ' = ' '$1 ~ /^ +Key fingerprint$/ { gsub(" ", "", $2); print $2 }' | sort -u
 ENV GPG_KEYS \
 	BDD0BBEB753192957EFC5F896A62FC8EF17D8FEF \
 	223D3A74B068ECA354DC385CE126833F9CF64915 \

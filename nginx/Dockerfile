@@ -1,13 +1,12 @@
 # Set the base image to Ubuntu
 FROM ubuntu
 
-# File Author / Maintainer
 MAINTAINER Zhiying
 
 RUN apt-get update &&  \
     apt-get install -y \ 
-	vim \
-        nginx  
+        nginx \
+	vim 
 
 # Append "daemon off;" to the configuration file
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
