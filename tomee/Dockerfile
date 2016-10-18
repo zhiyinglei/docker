@@ -1,33 +1,22 @@
 # Set the base image to Ubuntu
 FROM ubuntu
 
-# File Author / Maintainer
 MAINTAINER Zhiying
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Add application repository URL to the default sources
-# RUN echo "deb http://archive.ubuntu.com/ubuntu/ raring main universe" >> /etc/apt/sources.list
+RUN apt-get update && apt-get install -y \
+			python-software-properties \
+			software-properties-common \
+			vim \
+			curl 
 
-# Update the repository
-RUN apt-get update -y
-RUN apt-get install python-software-properties -y
-RUN apt-get install software-properties-common -y
-
-# Install necessary tools
-RUN apt-get install -y nano wget dialog net-tools
-RUN apt-get install -y vim
-RUN apt-get install -y wget
-RUN apt-get install curl -y
-
-RUN echo "install oracle java8"
-RUN add-apt-repository ppa:webupd8team/java
-RUN apt-get update
-RUN echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
-RUN echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections
-RUN apt-get install -y oracle-java8-installer
-RUN apt-get install -y oracle-java8-set-default
-RUN java -version
+RUN add-apt-repository ppa:webupd8team/java  
+RUN echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections  
+RUN echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections 
+RUN apt-get update && apt-get install -y \ 
+		oracle-java8-installer \ 
+		oracle-java8-set-default
 
 ENV PATH /usr/local/tomee/bin:$PATH
 RUN mkdir -p /usr/local/tomee
