@@ -6,9 +6,9 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y \
 	mysql-server \
-	wget
-
-RUN wget "https://raw.githubusercontent.com/tascape/reactor/master/src/main/resources/db/reactor.sql" -O reactor.sql
+	wget \
+    && rm -rf /var/lib/apt/lists/* \
+    && wget "https://raw.githubusercontent.com/tascape/reactor/master/src/main/resources/db/reactor.sql" -O reactor.sql
 
 RUN /etc/init.d/mysql start \
     && sleep 5 \ 

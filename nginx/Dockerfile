@@ -6,7 +6,8 @@ MAINTAINER Zhiying
 RUN apt-get update &&  \
     apt-get install -y \ 
         nginx \
-	vim 
+	vim \
+    && rm -rf /var/lib/apt/lists/*
 
 # Append "daemon off;" to the configuration file
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf

@@ -48,7 +48,7 @@ RUN set -x \
 	&& mv apache-tomee-webprofile-7.0.1/* /usr/local/tomee \
 	&& rm -Rf apache-tomee-webprofile-7.0.1 \
 	&& rm bin/*.bat \
-	&& rm tomee.tar.gz*
-
+	&& rm tomee.tar.gz* \
+	&& rm -rf /var/lib/apt/lists/*
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
